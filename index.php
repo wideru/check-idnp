@@ -1,18 +1,12 @@
 <?php
 
-class checkIDNP
+class CheckIDNP
 {
-    public static function check($idnp)
+    public static function check(string $idnp): bool
     {
-        if (empty($idnp)) {
-            return false;
-        }
+        $match = preg_match('/\d{13}/', $idnp);
 
-        $match = preg_match('/\d{13}/', $idnp, $matches);
-        
-        if (!$match) {
-            return false;
-        }
+        if (!$match) return false;
 
         $intSum1 = $intSum2 = $intSum3 = 0;
 
